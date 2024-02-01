@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center ion-text-capitalize">login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <figure class="ion-text-center">
+    <ion-avatar class="center-avatar">
+      <img src="../../../src/login.png" alt="logo" class="logo">
+    </ion-avatar>
+  </figure>
+  <form [formGroup]="loginForm"(ngsubmit)="login(loginForm.value)">
+    <ion-item>
+      <ion-input label="Correo" labelPlacement="floating" placeholder="Email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <div class="validation-messages">
+        <ng-container *ngfor="let validation of validation_messages.email">
+        <div *ngIf="
+          (loginForm.get('email')?.hasError(validation.type) &&
+          loginForm.get('email')?.dirty) ||
+          loginForm.get('email')?.touched
+          ">{{validation.messages}}</div>
+        </ng-container>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Pass" labelPlacement="floating" placeholder="Contraseña" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <div>
+        <ng-container *ngfor="let validation of validation_messages.email">
+        <div *ngIf="
+          (loginForm.get('Pass')?.hasError(validation.type) &&
+          loginForm.get('Pass')?.dirty) ||
+          loginForm.get('Pass')?.touched
+          ">{{validation.messages}}</div>
+        </ng-container>
+      </div>
+    </ion-item>
+    <ion-button 
+    type="submit"
+    [disabled]="!loginForm.valid"
+    color="success"
+    shape="round"
+    expand="full"
+    >Login</ion-button>
+  </form>
+</ion-content>
