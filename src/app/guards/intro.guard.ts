@@ -14,13 +14,16 @@ constructor(
   ) {}
 
   async canActivate() {
-    const mostreIntro = await this.storage.get('mostreLaIntro');
-    if (mostreIntro) {
+    const mostreIntro= await this.storage.get('mostreLaIntro');
+    if(mostreIntro){
+      console.log('Mostre la intro');
       return true;
-    } else {
+    }else{
+      console.log('No se mostro la intro');
       this.router.navigateByUrl('/intro');
       return false;
     }
+   
   }
   
 }
